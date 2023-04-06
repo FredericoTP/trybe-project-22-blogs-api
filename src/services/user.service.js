@@ -5,7 +5,7 @@ const { generateToken } = require('../utils/auth');
 const getByEmail = async (email) => {
   const userInfo = await User.findOne({ where: { email } });
 
-  if (!userInfo) return { type: 'USER_NOT_FOUND', message: 'User not found!' };
+  if (!userInfo) return { type: 'USER_NOT_FOUND', message: 'User does not exist' };
 
   return { type: null, message: userInfo.dataValues };
 };
@@ -32,7 +32,20 @@ const getAllUsers = async () => {
   return { type: null, message: users };
 };
 
+const getById = async (id) => {
+  const error = schema.validateId(id);
+  if (error.type) return error;
+
+  const userInfo = await User.findOne({ 
+    where: { id },
+    attributes: { exclude: ['password'] } });
+  if (!userInfo) return { type: 'USER_NOT_FOUND', message: 'User does not exist' };
+  
+  return { type: null, message: userInfo.dataValues };
+};
+
 module.exports = {
   createUser,
   getAllUsers,
+  getById,
 };
