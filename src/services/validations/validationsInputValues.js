@@ -1,4 +1,11 @@
-const { emailSchema, newUserSchema, idSchema } = require('./schemas');
+const {
+  emailSchema,
+  newUserSchema,
+  idSchema,
+  categoryNameSchema, 
+} = require('./schemas');
+
+const BAD_REQUEST = 'BAD_REQUEST';
 
 const validateEmail = (email) => {
   const { error } = emailSchema.validate(email);
@@ -11,7 +18,7 @@ const validateEmail = (email) => {
 const validateNewUser = (displayName, email, password) => {
   const { error } = newUserSchema.validate({ displayName, email, password });
 
-  if (error) return { type: 'BAD_REQUEST', message: error.message };
+  if (error) return { type: BAD_REQUEST, message: error.message };
 
   return { type: null, message: '' }; 
 };
@@ -19,7 +26,15 @@ const validateNewUser = (displayName, email, password) => {
 const validateId = (id) => {
   const { error } = idSchema.validate(id);
 
-  if (error) return { type: 'BAD_REQUEST', message: error.message };
+  if (error) return { type: BAD_REQUEST, message: error.message };
+
+  return { type: null, message: '' }; 
+};
+
+const validateCategoryName = (name) => {
+  const { error } = categoryNameSchema.validate(name);
+
+  if (error) return { type: BAD_REQUEST, message: error.message };
 
   return { type: null, message: '' }; 
 };
@@ -28,4 +43,5 @@ module.exports = {
   validateEmail,
   validateNewUser,
   validateId,
+  validateCategoryName,
 };
