@@ -14,7 +14,7 @@ const generateToken = (payload) => {
 };
 
 const validateToken = (token) => {
-  const isValid = jwt.verify(token, configJWT);
+  const isValid = jwt.verify(token, secretKey);
 
   return isValid;
 };
