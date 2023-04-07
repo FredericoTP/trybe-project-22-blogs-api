@@ -30,7 +30,23 @@ const getById = async (id) => {
   return { type: null, message: post.dataValues };
 };
 
+const updatePost = async (postId, body, userId) => {
+  const post = await getById(postId);
+  if (post.message.userId !== userId) {
+    return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
+  }
+
+  const { title, content } = body;
+
+  await BlogPost.update({ title, content }, { where: { id: postId } });
+
+  const postUpdated = await getById(postId);
+
+  return { type: null, message: postUpdated.message };
+};
+
 module.exports = {
   getAllPosts,
   getById,
+  updatePost,
 };

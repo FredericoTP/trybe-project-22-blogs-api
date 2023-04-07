@@ -11,7 +11,10 @@ const getByEmail = async (email, password) => {
     return { type: 'BAD_REQUEST', message: 'Invalid fields' }; 
   }
 
-  const token = generateToken({ name: userInfo.dataValues.displayName });
+  const token = generateToken({
+    id: userInfo.dataValues.id,
+    name: userInfo.dataValues.displayName,
+  });
 
   return { type: null, message: { token } };
 };

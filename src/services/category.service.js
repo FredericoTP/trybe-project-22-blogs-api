@@ -4,7 +4,7 @@ const schema = require('./validations/validationsInputValues');
 const getByName = async (name) => {
   const categoryInfo = await Category.findOne({ where: { name } });
 
-  if (!categoryInfo) return { type: 'CATEGORY_NOT_FOUND', message: 'User does not exist' };
+  if (!categoryInfo) return { type: 'CATEGORY_NOT_FOUND', message: 'Category does not exist' };
 
   return { type: null, message: categoryInfo.dataValues };
 };

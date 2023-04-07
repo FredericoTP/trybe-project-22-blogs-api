@@ -4,6 +4,7 @@ const errorMap = {
   POST_NOT_FOUND: 404,
   BAD_REQUEST: 400,
   CONFLICT: 409,
+  UNAUTHORIZED: 401,
 };
 
 const mapError = (type) => errorMap[type] || 500;
