@@ -4,11 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       postId: {
         type: DataTypes.INTEGER,
-        foreignKey: true,
+        primaryKey: true,
       },
       categoryId: {
         type: DataTypes.INTEGER,
-        foreignKey: true,
+        primaryKey: true,
       },
     },
     {
