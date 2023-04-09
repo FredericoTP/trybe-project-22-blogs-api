@@ -50,10 +50,22 @@ const searchPost = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const insertPost = async (req, res) => {
+  const { title, content, categoryIds } = req.body;
+  const { user } = req;
+
+  const { type, message } = await blogPostService.insertPost(user.id, title, content, categoryIds);
+
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+
+  return res.status(201).json(message);
+};
+
 module.exports = {
   getAllPosts,
   getById,
   updatePost,
   removePost,
   searchPost,
+  insertPost,
 };

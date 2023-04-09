@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, User, Category } = require('../models');
+const { BlogPost, User, Category, PostCategory } = require('../models');
 const schema = require('./validations/validationsInputValues');
 
 const { Op } = Sequelize;
@@ -79,10 +79,31 @@ const searchPost = async (search) => {
   return { type: null, message: posts };
 };
 
+const insertPost = async (userId, title, content, categoryIds) => {  
+  const findCategories = await Category.findAll({
+    where: {
+      id: { [Op.in]: categoryIds },
+    },
+  });
+
+  if (findCategories.length !== categoryIds.length) {
+    return { type: 'BAD_REQUEST', message: 'one or more "categoryIds" not found' };
+  }
+
+  const newPost = await BlogPost.create({ title, content, userId });
+
+  await Promise.all(categoryIds.map(
+    async (categoryId) => PostCategory.create({ postId: newPost.id, categoryId }),
+  ));
+
+  return { type: null, message: newPost };
+};
+
 module.exports = {
   getAllPosts,
   getById,
   updatePost,
   removePost,
   searchPost,
+  insertPost,
 };
