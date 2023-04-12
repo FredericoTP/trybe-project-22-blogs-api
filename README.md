@@ -1,5 +1,7 @@
 # :computer: Projeto Blogs API :computer:
 
+Nesse projeto foi desenvolvida uma API RESTful utilizando a arquitetura MSC (model-service-controller) e o sequelize. A API construída é um sistema para a produção de conteúdo para um blog! Na API é feita uma validação de login para que a pessoa usuária seja capaz de cria, editar, excluir e buscar posts no blog.
+
 <br />
 
 ### Stacks utilizadas no desenvolvimento:
