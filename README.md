@@ -70,7 +70,7 @@ Nesse projeto foi desenvolvida uma API RESTful utilizando a arquitetura MSC (mod
 
 ## 100% :heavy_check_mark:
 
-![Project-Store-Manager]()
+![Project-Blogs-API]()
 
 </details>
 <br />
