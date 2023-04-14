@@ -70,7 +70,7 @@ Nesse projeto foi desenvolvida uma API RESTful utilizando a arquitetura MSC (mod
 
 ## 100% :heavy_check_mark:
 
-![Project-Blogs-API]()
+![Project-Blogs-API](https://raw.githubusercontent.com/FredericoTP/trybe-project-22-blogs-api/main/image/blogs-api-grade.png)
 
 </details>
 <br />
